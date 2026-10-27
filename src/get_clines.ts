@@ -86,11 +86,11 @@ export async function getKlines(
       `${encodeURIComponent(poolAddress.trim())}/ohlcv`,
   );
 
-  const nowSeconds = Math.floor(Date.now() / 1000);
-  const startSeconds = nowSeconds - limit * seconds;
-
-  url.searchParams.set("start", new Date(startSeconds * 1000).toISOString());
-  url.searchParams.set("end", new Date(Date.now()).toISOString());
+  const startSeconds = Date.now() - limit * seconds * 1000;
+  console.log(Date.now());
+  console.log(startSeconds);
+  console.log(Date.now() - startSeconds);
+  url.searchParams.set("start", new Date(startSeconds).toISOString());
   url.searchParams.set("interval", interval);
   url.searchParams.set("limit", String(limit));
 
@@ -135,6 +135,8 @@ export async function getKlines(
 
   const result: unknown = await response.json();
 
+  console.log(1);
+  console.log(result);
   // The pool OHLCV endpoint returns candle records.
   // Validate the response instead of trusting external JSON.
   let rows: unknown;
@@ -189,15 +191,11 @@ export async function getKlines(
   const sorted = [...unique.values()].sort((a, b) => a.timestamp - b.timestamp);
 
   // Exclude the current, unfinished candle.
-  const now = Math.floor(Date.now() / 1000);
-
-  const closedCandles = sorted.filter(
-    (candle) => candle.timestamp + seconds <= now,
-  );
-
-  if (closedCandles.length < 2) {
-    throw new Error(`Not enough closed candles: ${closedCandles.length}`);
+  if (sorted.length < 2) {
+    throw new Error(
+      `[API DexPaprika] Найдено слишком мало свечей в ответе: ${sorted.length}`,
+    );
   }
 
-  return closedCandles;
+  return sorted;
 }

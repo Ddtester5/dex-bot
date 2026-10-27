@@ -5,7 +5,7 @@
   "main": "index.js",
   "scripts": {
     "bot": "tsx index.ts",
-       "test": "tsx test.ts"
+       "test": "tsx test.ts > test.txt 2>&1"
   },
   "repository": {
     "type": "git",
