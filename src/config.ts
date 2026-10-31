@@ -1,4 +1,3 @@
-
 export interface DexCoinConfig {
   SYMBOL: string;
   TOKEN_MINT: string;
@@ -34,15 +33,13 @@ export const PAPER_TRADING = true;
 
 export const COINS_CONFIG: DexCoinConfig[] = [
   {
-    SYMBOL: "MANIFEST", // отображаемый тикер; идентичность задаётся mint
-    TOKEN_MINT:
-      "BCdwQBAn8dYB5YjTsoB6TdHAWokxv28k2oZUodERpump",
-    POOL_ADDRESS:
-      "2DVbU5h8JCd37gaXAJUZ4t77HsjJW22LLduTZk7GSa43",
+    SYMBOL: "HELL", // отображаемый тикер; идентичность задаётся mint
+    TOKEN_MINT: "A75Xx6SeftAmWduv9KGwb2GCjXUAhxozcCUCys9jpump",
+    POOL_ADDRESS: "2T8psneofbZpmjxp6aY9aa9wh895msL48P15Jz64HB3e",
 
     USDC_QUANTITY: 5,
-    STOP_LOSS_PCT: 5,
-    BUY_RANGE: 0.05,
+    STOP_LOSS_PCT: 15,
+    BUY_RANGE: 0.1,
     SELL_RANGE: 0.75,
 
     MIN_NOTIONAL: 1.5,
@@ -50,11 +47,11 @@ export const COINS_CONFIG: DexCoinConfig[] = [
     INTERVAL_AFTER_STOPLOSS_MS: 300_000,
     ORDER_TIMEOUT_MS: 60_000,
 
-    ANALIZE_INTERVAL_CANDLES: 2,
+    ANALIZE_INTERVAL_CANDLES: 20,
     CANDLES_INTERVAL: "15m",
-    LOOCAL_LOOKBACK: 2,
+    LOOCAL_LOOKBACK: 20,
 
     MIN_RANGE_PCT: 1,
-    MAX_RANGE_PCT: 20,
+    MAX_RANGE_PCT: 100,
   },
 ];

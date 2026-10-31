@@ -1,5 +1,5 @@
 import type { DexCoinConfig } from "./config";
-import { getKlines } from "./get_clines";
+import { getKlines } from "./get_info/get_clines";
 
 export interface MarketRegime {
   candleCount: number;

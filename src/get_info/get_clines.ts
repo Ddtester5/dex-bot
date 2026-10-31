@@ -87,9 +87,6 @@ export async function getKlines(
   );
 
   const startSeconds = Date.now() - limit * seconds * 1000;
-  console.log(Date.now());
-  console.log(startSeconds);
-  console.log(Date.now() - startSeconds);
   url.searchParams.set("start", new Date(startSeconds).toISOString());
   url.searchParams.set("interval", interval);
   url.searchParams.set("limit", String(limit));
@@ -135,8 +132,6 @@ export async function getKlines(
 
   const result: unknown = await response.json();
 
-  console.log(1);
-  console.log(result);
   // The pool OHLCV endpoint returns candle records.
   // Validate the response instead of trusting external JSON.
   let rows: unknown;
